@@ -1,0 +1,25 @@
+version: '2'
+services:
+  web:
+    restart: always
+    build: ./web
+    image: heineman/hydroponics_web
+    expose:
+      - "8000"
+    volumes:
+      - /usr/src/app/static
+    # env_file: .env
+    command: puma -p 8000
+  
+  nginx:
+    restart: always
+    build: ./nginx/
+    image: heineman/hydroponics_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - /www/static
+    volumes_from:
+      - web
+    links:
+      - web:web
