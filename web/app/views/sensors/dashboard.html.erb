@@ -8,13 +8,13 @@
     </div>
   </div>
   <div class="row">
-  <% range = params[:range] || 30 %>
-  <% Sensor.select([:name, :unit]).uniq.each do |sensor| %>
+  <% range = params[:range] || 15 %>
+  <% Sensor.select([:name, :unit]).where("name like '%Tube%'").uniq.order(:name).each do |sensor| %>
     <div class="col-xs-6">
-    <%= line_chart Sensor.group_by_minute(:created_at, last: range).where(name: sensor).average(:reading) %>
+  <%= line_chart Sensor.group_by_hour(:created_at, last: range
+  ).where(name: sensor.name).average(:reading), library:  { title: { text: sensor.name }, xAxis: { title: { text: "Time"}}, yAxis: { title: { text: sensor.unit}}} %>
     </div>
   <% end %>
-  <%= line_chart Sensor.group_by_minute(:created_at, last: range).average(:reading) %>
   </div>
 </div>
 
