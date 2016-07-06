@@ -8,8 +8,8 @@ services:
       - "8000"
     volumes:
       - /usr/src/app/static
-    # env_file: .env
-    command: puma -p 8000
+    env_file: .env
+    command: puma -p 8000 
   
   nginx:
     restart: always

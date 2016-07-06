@@ -12,7 +12,7 @@
   <% Sensor.select([:name, :unit]).where("name like '%Tube%'").uniq.order(:name).each do |sensor| %>
     <div class="col-xs-6">
   <%= line_chart Sensor.group_by_hour(:created_at, last: range
-  ).where(name: sensor.name).average(:reading), library:  { title: { text: sensor.name }, xAxis: { title: { text: "Time"}}, yAxis: { title: { text: sensor.unit}}} %>
+  ).where(name: sensor.name).average(:reading) %>
     </div>
   <% end %>
   </div>
