@@ -9,8 +9,7 @@ services:
     volumes:
       - /usr/src/app/static
     env_file: .env
-    command: puma -p 8000 
-  
+    command: puma -p 8000 -C config.rb
   nginx:
     restart: always
     build: ./nginx/

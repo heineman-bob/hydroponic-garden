@@ -4,5 +4,6 @@ RUN mkdir /hydroponics
 WORKDIR /hydroponics
 ADD Gemfile /hydroponics/Gemfile
 ADD Gemfile.lock /hydroponics/Gemfile.lock
+COPY .gemrc ~/.
 RUN bundle install
 ADD . /hydroponics

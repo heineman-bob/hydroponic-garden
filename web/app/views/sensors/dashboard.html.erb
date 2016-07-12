@@ -16,12 +16,7 @@
 
     <%= line_chart Sensor.select([:name, :unit]).where("name like '%Tube%' or name like '%Tank%'").uniq.order(:name).map { |sensor|
       { name: sensor.name, data: Sensor.group_by_minute(:created_at, last: range
-      ).where(name: sensor.name).average(:reading), library:  { title: { text: sensor.name }, xAxis: { title: { text: "Time"}, labels: {
-                style: {
-                    color: 'red',
-                    fontSize:'20px'
-                }
-            }}, yAxis: { title: { text:     sensor.unit}}}}}%>
+      ).where(name: sensor.name).average(:reading), library:  { title: { text: sensor.name }, xAxis: { title: { text: "Time"}}, yAxis: { title: { text:     sensor.unit}}}}}%>
     </div>
     <div class="page-header text-center">
       <h1>Ambient Sensors</h1>
