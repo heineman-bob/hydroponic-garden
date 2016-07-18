@@ -15,4 +15,8 @@
 //= require turbolinks
 //= require highcharts
 //= require chartkick
+//= require bootstrap-sprockets
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
