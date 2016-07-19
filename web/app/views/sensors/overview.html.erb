@@ -1,5 +1,5 @@
 <div class"row">
   <div class="col-xs-12">
-    <%= react_component 'CurrentReadings', { data: @sensors } %>
+    <%= react_component 'CurrentReadings', { data: @sensors, url: '/sensors/overview.json', pollInterval: 5000 } %>
   </div>
 </div>

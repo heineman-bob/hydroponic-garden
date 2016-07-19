@@ -1,15 +1,23 @@
 // Place all the styles related to the Sensors controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.gauge {
-  padding:2em;
+.gauge-container {
   margin-bottom:2em;
-  border-radius:10000px !important;
-  min-height:5em !important;
-  width:15em;
-  margin:auto;
-  p {
-    font-size:4em;
-    line-height:3em;
+  .gauge-title{
+    font-size:1.3em; 
+  }
+  .gauge {
+    padding:2em;
+    border-radius:10000px !important;
+    width:50%;
+    margin:auto;
+    margin-bottom:2em;
+    box-shadow:4px 4px 4px #000;
+    p {
+      font-size:2.2em;
+      line-height:2em;
+      color: blue;
+      transform: skewX(-5deg);
+    }
   }
 }

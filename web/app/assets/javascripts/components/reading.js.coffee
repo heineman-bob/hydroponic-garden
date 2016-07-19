@@ -1,6 +1,11 @@
 @Reading = React.createClass
   render: ->
-    React.DOM.div
-      className: 'well'
-      React.DOM.td null, @props.sensors.name
-      React.DOM.td null, @props.sensors.Reading
+    React.DOM.tr null,
+      React.DOM.td null,
+        @props.sensor.name
+      React.DOM.td null,
+        @props.sensor.reading  
+      React.DOM.td null,
+        @props.sensor.created_at
+    
+    

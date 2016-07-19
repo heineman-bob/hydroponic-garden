@@ -21,12 +21,6 @@ class SensorsController < ApplicationController
   def overview
     @sensors = Sensor.last(7).sort_by { |hsh| hsh[:name] }
     expires_in(3.minutes, public: true)
-    if stale?(etag: @sensors, public: true)
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @sensors }
-    end
-  end
   end
 
   # GET /sensors/new
