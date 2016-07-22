@@ -18,6 +18,11 @@ class SensorsController < ApplicationController
     end
   end
 
+  def overview
+    @sensors = Sensor.last(7).sort_by { |hsh| hsh[:name] }
+    expires_in(3.minutes, public: true)
+  end
+
   # GET /sensors/new
   def new
     @sensor = Sensor.new

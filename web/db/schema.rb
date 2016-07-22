@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606183256) do
+ActiveRecord::Schema.define(version: 20160716142009) do
 
   create_table "sensors", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -21,5 +21,7 @@ ActiveRecord::Schema.define(version: 20160606183256) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "sensors", ["name"], name: "index_sensors_on_name", using: :btree
 
 end
