@@ -10,15 +10,11 @@ services:
       - /usr/src/app/static
     env_file: .env
     command: puma -p 8000 -C config.rb
-  nginx:
-    restart: always
-    build: ./nginx/
-    image: heineman/hydroponics_nginx
+  lb:
+    image: dockercloud/haproxy
+    links:
+      - web
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "80:80"
-    volumes:
-      - /www/static
-    volumes_from:
-      - web
-    links:
-      - web:web
