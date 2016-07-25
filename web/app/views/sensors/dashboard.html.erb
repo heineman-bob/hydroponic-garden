@@ -14,7 +14,7 @@
     <div class="col-xs-12">
     <% range = params[:range] || 15 %>
 
-    <%= line_chart Sensor.select([:name, :unit]).where("name like '%Tube%' or name like '%Tank%'").uniq.order(:name).map { |sensor|
+    <%= line_chart Sensor.select([:name, :unit]).where('created_at > ?', Time.now - 1.hour).where("name like '%Tube%' or name like '%Tank%'").uniq.order(:name).map { |sensor|
       { name: sensor.name, data: Sensor.group_by_minute(:created_at, last: range
       ).where(name: sensor.name).average(:reading), library:  { title: { text: sensor.name }, xAxis: { title: { text: "Time"}}, yAxis: { title: { text:     sensor.unit}}}}}%>
     </div>
@@ -22,10 +22,7 @@
       <h1>Ambient Sensors</h1>
     </div>
     <div class="col-xs-12">
-<!--       <% Sensor.select([:name, :unit]).where("name like '%ambient%'").uniq.order(:name).each do |sensor| %>
-        <%= line_chart Sensor.group_by_hour(:created_at, last: range).where(name: sensor.name).average(:reading), library:  { title: { text: sensor.name.humanize }, xAxis: { title: { text: "Time"}}, yAxis: { title: { text: sensor.unit}}} %>
-      <% end %> -->
-        <%= line_chart Sensor.select([:name, :unit]).where("name like '%ambient%'").uniq.order(:name).map {|sensor| 
+        <%= line_chart Sensor.select([:name, :unit]).where('created_at > ?', Time.now - 1.hour).where("name like '%ambient%'").uniq.order(:name).map {|sensor| 
           {name: sensor.name.humanize, data: Sensor.group_by_minute(:created_at, last: range).where(name: sensor.name).average(:reading), discrete: true, library:  { title: { text: sensor.name.humanize }, xAxis: { title: { text: "Time"}}, yAxis: { title: { text: sensor.unit}}}}}
         %>
     </div>
@@ -35,7 +32,7 @@
     <h1>Raspberry Pi</h1>
   </div>
     <div class="col-xs-12">
-      <%= line_chart Sensor.select([:name, :unit]).where("name like '%cpu%'").uniq.order(:name).map {|sensor| 
+      <%= line_chart Sensor.select([:name, :unit]).where('created_at > ?', Time.now - 1.hour).where("name like '%cpu%'").uniq.order(:name).map {|sensor| 
           {name: sensor.name.humanize, data: Sensor.group_by_minute(:created_at, last: range).where(name: sensor.name).average(:reading), discrete: true, library:  { title: { text: sensor.name.humanize }, xAxis: { title: { text: "Time"}}, yAxis: { title: { text: sensor.unit}}}}} %>
     </div>
   </div>
